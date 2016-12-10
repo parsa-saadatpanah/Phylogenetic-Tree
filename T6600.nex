@@ -1,0 +1,97 @@
+#NEXUS
+
+[!This data set was downloaded from TreeBASE, a relational database of phylogenetic knowledge. TreeBASE has been supported by the NSF, Harvard University, Yale University, SDSC and UC Davis. Please do not remove this acknowledgment from the Nexus file.
+
+
+Generated on December 09, 2016; 14:37 GMT
+
+TreeBASE (cc) 1994-2008
+
+Study reference:
+Spinks P., Thomson R.C., Lovely G., & Bradley shaffer H. 2009. Assessing what is
+needed to resolve a molecular phylogeny: simulations and empirical data from Emydid
+turtles. BMC Evolutionary Biology, 9(56): 56.
+
+TreeBASE Study URI:  http://purl.org/phylo/treebase/phylows/study/TB2:S9967]
+
+BEGIN TAXA;
+        TITLE  M4374;
+        DIMENSIONS NTAX=66;
+        TAXLABELS
+            Chelonia_mydas
+            Chrysemys_picta_1
+            Chrysemys_picta_2
+            Chrysemys_picta_3
+            Chrysemys_picta_4
+            Clemmys_guttata_1
+            Clemmys_guttata_2
+            Clemmys_guttata_3
+            Deirochelys_reticularia_1
+            Deirochelys_reticularia_2
+            Emys_blandingii_1
+            Emys_blandingii_2
+            Emys_blandingii_3
+            Emys_marmorata_1
+            Emys_marmorata_2
+            Emys_marmorata_3
+            Emys_marmorata_4
+            Emys_orbicularis_1
+            Emys_orbicularis_2
+            Emys_orbicularis_3
+            Emys_orbicularis_4
+            Emys_trinacris_1
+            Emys_trinacris_2
+            Glyptemys_insculpta_1
+            Glyptemys_insculpta_2
+            Glyptemys_insculpta_3
+            Glyptemys_muhlenbergii_1
+            Glyptemys_muhlenbergii_2
+            Glyptemys_muhlenbergii_3
+            Graptemys_geographica_2
+            Graptemys_ouachatensis
+            Graptemys_pseudogeographica_1
+            Graptemys_pseudogeographica_2
+            Graptemys_pseudogeographica_3
+            Heosemys_spinosa
+            Malaclemys_terrapin
+            Mauremys_mutica_1
+            Mauremys_mutica_3
+            Platysternon_megacephalum
+            Psammobates_pardalis
+            Pseudemys_concinna
+            Pseudemys_concinna_floridana_1
+            Pseudemys_concinna_floridana_2
+            Pseudemys_peninsularis_1
+            Pseudemys_peninsularis_2
+            Terrapene_carolina_1
+            Terrapene_carolina_2
+            Terrapene_carolina_3
+            Terrapene_carolina_4
+            Terrapene_carolina_triunguis_1
+            Terrapene_carolina_triunguis_2
+            Terrapene_coahuila_1
+            Terrapene_coahuila_2
+            Terrapene_coahuila_3
+            Terrapene_ornata_1
+            Terrapene_ornata_2
+            Terrapene_ornata_leuteola
+            Trachemys_s_scripta_1
+            Trachemys_s_scripta_2
+            Trachemys_scripta_elegans_1
+            Trachemys_scripta_elegans_2
+            Trachemys_stejnegeri_1
+            Trachemys_stejnegeri_2
+            Trachemys_taylori_1
+            Trachemys_taylori_2
+            Trachemys_taylori_3
+            ;
+END;
+
+BEGIN TREES;
+      TITLE Tb10357;
+      LINK TAXA = M4374;
+      TREE cyt_b = [&R] (Chelonia_mydas,Platysternon_megacephalum,(((Heosemys_spinosa,(Mauremys_mutica_1,Mauremys_mutica_3)),Psammobates_pardalis),(((((((Chrysemys_picta_1,Chrysemys_picta_3),Chrysemys_picta_4),Chrysemys_picta_2),(Pseudemys_concinna,(Pseudemys_concinna_floridana_1,Pseudemys_concinna_floridana_2,Pseudemys_peninsularis_2),Pseudemys_peninsularis_1)),(((Graptemys_geographica_2,(Graptemys_ouachatensis,(Graptemys_pseudogeographica_1,Graptemys_pseudogeographica_2,Graptemys_pseudogeographica_3))),((((Trachemys_scripta_elegans_1,(Trachemys_scripta_elegans_2,Trachemys_s_scripta_2)),Trachemys_s_scripta_1),(Trachemys_stejnegeri_1,Trachemys_stejnegeri_2)),(Trachemys_taylori_1,Trachemys_taylori_2,Trachemys_taylori_3))),Malaclemys_terrapin)),(((((Clemmys_guttata_1,Clemmys_guttata_2),Clemmys_guttata_3),(((((Terrapene_carolina_1,Terrapene_carolina_3),Terrapene_carolina_2),(Terrapene_coahuila_1,Terrapene_coahuila_2,Terrapene_coahuila_3)),(Terrapene_carolina_4,(Terrapene_carolina_triunguis_1,Terrapene_carolina_triunguis_2))),(Terrapene_ornata_leuteola,Terrapene_ornata_1,Terrapene_ornata_2))),((((Emys_blandingii_1,Emys_blandingii_3),Emys_blandingii_2),(((Emys_marmorata_1,Emys_marmorata_3),Emys_marmorata_2),Emys_marmorata_4)),(((Emys_orbicularis_1,Emys_orbicularis_4),(Emys_orbicularis_2,Emys_orbicularis_3)),(Emys_trinacris_1,Emys_trinacris_2)))),((Glyptemys_insculpta_1,(Glyptemys_insculpta_2,Glyptemys_insculpta_3)),(Glyptemys_muhlenbergii_1,Glyptemys_muhlenbergii_2,Glyptemys_muhlenbergii_3)))),(Deirochelys_reticularia_1,Deirochelys_reticularia_2))));
+[!  TreeBASE tree URI: http://purl.org/phylo/treebase/phylows/tree/TB2:Tr6600]
+
+
+END;
