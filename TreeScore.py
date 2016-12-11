@@ -1,3 +1,5 @@
+import sys
+
 def parse(s):
 	if s[0]!='(':
 		return []
@@ -64,16 +66,18 @@ class Node(object):
 
 
 
+if __name__ == "__main__":
+	seq = {}
+	s = open('Alignment', 'r')
+	for line in s:
+		seq[line.split()[0]] = line.split()[1] 
 
-seq = {}
-s = open('Alignment', 'r')
-for line in s:
-	seq[line.split()[0]] = line.split()[1] 
+	if len(sys.argv) == 2:
+		t= open(sys.argv[1],'r')
+	else:
+		t = open('RealTree', 'r')
+	root = Node(t.readline(), seq)
 
-# t = open('ConstructedTree', 'r')
-t = open('RealTree', 'r')
-root = Node(t.readline(), seq)
-
-scores = [ min([root.score[i][j] for j in range(len(root.score[0]))]) for i in range(len(root.score))]
-print(sum(scores))
+	scores = [ min([root.score[i][j] for j in range(len(root.score[0]))]) for i in range(len(root.score))]
+	print(sum(scores))
 
