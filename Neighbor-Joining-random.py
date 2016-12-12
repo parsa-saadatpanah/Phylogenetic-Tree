@@ -31,6 +31,7 @@ def doYourWork(isRandom,d,name,factor):
 			for j in valids:
 				if j != i:
 					sm[i]+=d[i][j]
+		ssm=sum(sm)
 		for i in valids:
 			for j in valids:
 				if j<=i: 
@@ -39,6 +40,9 @@ def doYourWork(isRandom,d,name,factor):
 				sub = sm[i]+sm[j]-d[i][j]*2
 				sub/= float(max(count-2,1))
 				NJD = NJD - sub
+				add=ssm-2*sm[i]-2*sm[j]+2*d[i][j]
+				add/=float(max((count-2)*(count-3),1))
+				NJD+=add
 				all.append((i,j,NJD))
 		all=sorted(all, key= lambda x:x[2])
 		if len(all)<=1 or isRandom==False:
@@ -84,8 +88,8 @@ for i in range(len(name)):
 res=[]
 res.append( doYourWork(False,deepcopy(d),deepcopy(name),1))
 for i in range(100):
-	res.append(doYourWork(True,deepcopy(d),deepcopy(name),1+i/10.))
-#	print(res[-1][1])
+	res.append(doYourWork(True,deepcopy(d),deepcopy(name),1+i/100.))
+	print(i," -> ",res[-1][1])
 res=sorted(res,key=lambda x: x[1])
 
 o = open('ConstructedTree', 'w')
