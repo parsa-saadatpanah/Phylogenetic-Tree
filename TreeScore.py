@@ -1,5 +1,17 @@
 import sys
 import re
+def RemoveBrace(s):
+	ans = ''
+	i = 0
+	while i<len(s):
+		if s[i]!='{':
+			ans = ans + s[i]
+		else:
+			ans = ans + s[i+1]
+			i = i+3
+		i = i+1
+	return ans
+
 def parse(s):
 	if s[0]!='(':
 		return []
@@ -70,8 +82,7 @@ if __name__ == "__main__":
 	seq = {}
 	s = open('Alignment2', 'r')
 	for line in s:
-		seq[line.split()[0]] = re.sub('\\{[^\\}]*\\}',
-			'?',line.split()[1])
+		seq[line.split()[0]] = RemoveBrace(line.split()[1])
 		l=len(seq[line.split()[0]])
 
 	if len(sys.argv) == 2:

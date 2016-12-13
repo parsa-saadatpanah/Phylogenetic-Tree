@@ -1,5 +1,5 @@
 from copy import *
-from TreeScore import Node
+from TreeScore import *
 import math
 import random
 import re
@@ -15,8 +15,7 @@ def score(name):
 	seq = {}
 	s = open('Alignment2', 'r')
 	for line in s:
-		seq[line.split()[0]] = re.sub('\\{[^\\}]*\\}',
-			'?',line.split()[1])
+		seq[line.split()[0]] = RemoveBrace(line.split()[1])
 		l=len(seq[line.split()[0]]) 
 
 	root = Node(name, seq,l)
@@ -82,8 +81,7 @@ seq = []
 for line in f:
 	l = line.split()
 	name.append(l[0])
-	seq.append(re.sub('\\{[^\\}]*\\}',
-			'?',l[1]))
+	seq.append(RemoveBrace(l[1]))
 
 d = [[0 for i in range(len(name))] for j in range(len(name))]
 
@@ -91,9 +89,9 @@ for i in range(len(name)):
 	for j in range(len(name)):
 		d[i][j] = compare(seq[i], seq[j])
 res=[]
-res.append( doYourWork(False,False,deepcopy(d),deepcopy(name),1))
+res.append( doYourWork(False,True,deepcopy(d),deepcopy(name),1))
 for i in range(100):
-	res.append(doYourWork(True,False,deepcopy(d),deepcopy(name),1+i/10.))
+	res.append(doYourWork(True,True,deepcopy(d),deepcopy(name),1+i/10.))
 	print(i," -> ",res[-1][1])
 res=sorted(res,key=lambda x: x[1])
 

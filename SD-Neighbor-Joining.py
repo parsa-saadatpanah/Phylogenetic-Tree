@@ -1,15 +1,5 @@
 import re
-def RemoveBrace(s):
-	ans = ''
-	i = 0
-	while i<len(s):
-		if i!='{':
-			ans = ans + s[i]
-		else:
-			ans = ans + s[i+1]
-			i = i+3
-		i = i+1
-	return ans
+from TreeScore import *
 def compare(s1, s2):
 	d = 0
 	for i in range(len(s1)):
@@ -23,8 +13,7 @@ seq = []
 for line in f:
 	l = line.split()
 	name.append(l[0])
-	seq.append(re.sub('\\{[^\\}]*\\}',
-			'?',l[1]))
+	seq.append(RemoveBrace(l[1]))
 
 d = [[0 for i in range(len(name))] for j in range(len(name))]
 
