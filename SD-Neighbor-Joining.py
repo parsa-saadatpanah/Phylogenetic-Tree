@@ -8,7 +8,7 @@ def RemoveBrace(s):
 		else:
 			ans = ans + s[i+1]
 			i = i+3
-		i = i+
+		i = i+1
 	return ans
 def compare(s1, s2):
 	d = 0
