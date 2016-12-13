@@ -1,4 +1,14 @@
 import re
+def RemoveBrace(s):
+	ans = ''
+	i = 0
+	while i<len(s):
+		if i!='{':
+			ans = ans + s[i]
+		else:
+			ans = ans + s[i+1]
+			i = i+3
+		i = i+1
 def compare(s1, s2):
 	d = 0
 	for i in range(len(s1)):
