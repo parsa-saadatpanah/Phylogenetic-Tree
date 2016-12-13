@@ -2,6 +2,7 @@ from copy import *
 from TreeScore import Node
 import math
 import random
+import re
 def compare(s1, s2):
 	d = 0
 	for i in range(len(s1)):
@@ -12,15 +13,17 @@ def compare(s1, s2):
 
 def score(name):
 	seq = {}
-	s = open('Alignment', 'r')
+	s = open('Alignment2', 'r')
 	for line in s:
-		seq[line.split()[0]] = line.split()[1] 
+		seq[line.split()[0]] = re.sub('\\{[^\\}]*\\}',
+			'?',line.split()[1])
+		l=len(seq[line.split()[0]]) 
 
-	root = Node(name, seq)
+	root = Node(name, seq,l)
 	scores = [ min([root.score[i][j] for j in range(len(root.score[0]))]) for i in range(len(root.score))]
 	return sum(scores)
 
-def doYourWork(isRandom,d,name,factor):
+def doYourWork(isRandom,secondDegree,d,name,factor):
 	count = len(name)
 	valid = [True for i in range(count)]
 	while count>1:
@@ -40,9 +43,10 @@ def doYourWork(isRandom,d,name,factor):
 				sub = sm[i]+sm[j]-d[i][j]*2
 				sub/= float(max(count-2,1))
 				NJD = NJD - sub
-				add=ssm-2*sm[i]-2*sm[j]+2*d[i][j]
-				add/=float(max((count-2)*(count-3),1))
-				NJD+=add
+				if secondDegree:
+					add=ssm-2*sm[i]-2*sm[j]+2*d[i][j]
+					add/=float(max((count-2)*(count-3),1))
+					NJD+=add
 				all.append((i,j,NJD))
 		all=sorted(all, key= lambda x:x[2])
 		if len(all)<=1 or isRandom==False:
@@ -72,13 +76,14 @@ def doYourWork(isRandom,d,name,factor):
 			s=score(name[i])
 			return (name[i],s)
 
-f = open('Alignment', 'r')
+f = open('Alignment2', 'r')
 name = []
 seq = []
 for line in f:
 	l = line.split()
 	name.append(l[0])
-	seq.append(l[1])
+	seq.append(re.sub('\\{[^\\}]*\\}',
+			'?',l[1]))
 
 d = [[0 for i in range(len(name))] for j in range(len(name))]
 
@@ -86,9 +91,9 @@ for i in range(len(name)):
 	for j in range(len(name)):
 		d[i][j] = compare(seq[i], seq[j])
 res=[]
-res.append( doYourWork(False,deepcopy(d),deepcopy(name),1))
+res.append( doYourWork(False,False,deepcopy(d),deepcopy(name),1))
 for i in range(100):
-	res.append(doYourWork(True,deepcopy(d),deepcopy(name),1+i/100.))
+	res.append(doYourWork(True,False,deepcopy(d),deepcopy(name),1+i/10.))
 	print(i," -> ",res[-1][1])
 res=sorted(res,key=lambda x: x[1])
 

@@ -25,35 +25,32 @@ count = len(name)
 
 valid = [True for i in range(count)]
 
-while(count>1):
+while count>1:
 	best_i = -1
 	best_j = -1
 	NJD = [ [0 for i in range(len(name))] for j in range(len(name)) ]
-	for i in range(len(name)):
-		if not valid[i]:
-			continue
-		for j in range(len(name)):
-			if not valid[j]:
-				continue
-			if i==j:
+	valids= [x for x in range(len(name)) if valid[x]]
+	sm=[0 for i in range(len(name))]
+	for i in valids:
+		for j in valids:
+			if j != i:
+				sm[i]+=d[i][j]
+	ssm=sum(sm)
+	for i in valids:
+		for j in valids:
+			if j==i: 
 				continue
 			NJD[i][j] = d[i][j]
-			sub = 0.0
-			for k in range(len(name)):
-				if not valid[k]:
-					continue
-				if k==i or k==j:
-					continue
-				sub = sub + d[i][k] + d[j][k]
-			sub = sub / float(max(count-2,1))
+			sub = sm[i]+sm[j]-d[i][j]*2
+			sub/= float(max(count-2,1))
 			NJD[i][j] = NJD[i][j] - sub
-			if best_i==-1:
+			add=ssm-2*sm[i]-2*sm[j]+2*d[i][j]
+			add/=float(max((count-2)*(count-3),1))
+			NJD[i][j]+=add
+			if best_i == -1 or NJD[i][j]<NJD[best_i][best_j]:
 				best_i = i
 				best_j = j
-			if NJD[i][j]<NJD[best_i][best_j]:
-				best_i = i
-				best_j = j
-	
+	NJD[best_i][best_j]	
 	valid[best_j] = False
 	name[best_i] = '('+name[best_i]+','+name[best_j]+')'
 	for k in range(len(name)):
@@ -61,7 +58,7 @@ while(count>1):
 			continue
 		if k==best_i or k==best_j:
 			continue
-		d_new = d[best_i][k] + d[best_j][k] -d[best_i][best_j]
+		d_new = d[best_i][k] + d[best_j][k] - d[best_i][best_j]
 		d_new = float(d_new)/2.0
 		d[best_i][k] = d_new
 		d[k][best_i] = d_new

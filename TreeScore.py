@@ -1,5 +1,5 @@
 import sys
-
+import re
 def parse(s):
 	if s[0]!='(':
 		return []
@@ -29,14 +29,14 @@ def parse(s):
 
 class Node(object):
 
-	def __init__(self, s, seq):
+	def __init__(self, s, seq,length):
 		self.name = s
 		inside = parse(s)
-		self.children = [Node(i, seq) for i in inside]
-		self.score = [ [1 for i in range(4)] for i in range(1070)]
+		self.children = [Node(i, seq,length) for i in inside]
+		self.score = [ [1 for i in range(4)] for i in range(length)]
 		if len(self.children) == 0:
 			sequence = seq[self.name]
-			for i in range(1070):
+			for i in range(length):
 				if sequence[i] == 'A':
 					self.score[i][0] = 0
 				elif sequence[i] == 'T':
@@ -51,7 +51,7 @@ class Node(object):
 					self.score[i][2] = 0
 					self.score[i][3] = 0
 		else:
-			for i in range(1070):
+			for i in range(length):
 				for j in range(4):
 					self.score[i][j] = 0
 					for child in self.children:
@@ -68,15 +68,17 @@ class Node(object):
 
 if __name__ == "__main__":
 	seq = {}
-	s = open('Alignment', 'r')
+	s = open('Alignment2', 'r')
 	for line in s:
-		seq[line.split()[0]] = line.split()[1] 
+		seq[line.split()[0]] = re.sub('\\{[^\\}]*\\}',
+			'?',line.split()[1])
+		l=len(seq[line.split()[0]])
 
 	if len(sys.argv) == 2:
 		t= open(sys.argv[1],'r')
 	else:
 		t = open('RealTree', 'r')
-	root = Node(t.readline(), seq)
+	root = Node(t.readline(), seq,l)
 
 	scores = [ min([root.score[i][j] for j in range(len(root.score[0]))]) for i in range(len(root.score))]
 	print(sum(scores))
